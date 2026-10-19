@@ -1,0 +1,20 @@
+// Import individual icons so Metro includes only the glyphs used by the app.
+export { ArrowLeftIcon as ArrowLeft } from 'phosphor-react-native/src/icons/ArrowLeft';
+export { ArrowRightIcon as ArrowRight } from 'phosphor-react-native/src/icons/ArrowRight';
+export { ArrowUpRightIcon as ArrowUpRight } from 'phosphor-react-native/src/icons/ArrowUpRight';
+export { BookOpenIcon as BookOpen } from 'phosphor-react-native/src/icons/BookOpen';
+export { CalendarBlankIcon as CalendarBlank } from 'phosphor-react-native/src/icons/CalendarBlank';
+export { CaretRightIcon as CaretRight } from 'phosphor-react-native/src/icons/CaretRight';
+export { CheckIcon as Check } from 'phosphor-react-native/src/icons/Check';
+export { CheckCircleIcon as CheckCircle } from 'phosphor-react-native/src/icons/CheckCircle';
+export { CheckSquareIcon as CheckSquare } from 'phosphor-react-native/src/icons/CheckSquare';
+export { ClipboardTextIcon as ClipboardText } from 'phosphor-react-native/src/icons/ClipboardText';
+export { ClockIcon as Clock } from 'phosphor-react-native/src/icons/Clock';
+export { GraduationCapIcon as GraduationCap } from 'phosphor-react-native/src/icons/GraduationCap';
+export { HouseIcon as House } from 'phosphor-react-native/src/icons/House';
+export { MagnifyingGlassIcon as MagnifyingGlass } from 'phosphor-react-native/src/icons/MagnifyingGlass';
+export { MapPinIcon as MapPin } from 'phosphor-react-native/src/icons/MapPin';
+export { PencilSimpleIcon as PencilSimple } from 'phosphor-react-native/src/icons/PencilSimple';
+export { UserCircleIcon as UserCircle } from 'phosphor-react-native/src/icons/UserCircle';
+export { WarningCircleIcon as WarningCircle } from 'phosphor-react-native/src/icons/WarningCircle';
+export { XIcon as X } from 'phosphor-react-native/src/icons/X';
