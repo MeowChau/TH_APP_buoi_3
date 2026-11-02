@@ -1,204 +1,156 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import {
-  BookOpen,
-  CalendarBlank,
-  CheckSquare,
-  House,
-  UserCircle,
-} from '../components/Icons';
-import { RootStackParamList, TabParamList } from '../types';
-import { OverviewScreen } from '../screens/OverviewScreen';
-import { CoursesScreen } from '../screens/CoursesScreen';
-import { TimetableScreen } from '../screens/TimetableScreen';
-import { AssignmentsScreen } from '../screens/AssignmentsScreen';
-import { ProfileScreen } from '../screens/ProfileScreen';
-import { CourseDetailScreen } from '../screens/CourseDetailScreen';
-import { SessionDetailScreen } from '../screens/SessionDetailScreen';
-import { AssignmentDetailScreen } from '../screens/AssignmentDetailScreen';
-import { ResultDetailScreen } from '../screens/ResultDetailScreen';
-import { EditProfileScreen } from '../screens/EditProfileScreen';
-import { useStudy } from '../context/StudyContext';
-import { Notice } from '../components/UI';
-import { colors, fonts, ui } from '../theme';
+import { X } from '../components/Icons';
+import TabIcon from './TabIcon';
+import HomeStack from './HomeStack';
+import CourseStack from './CourseStack';
+import ScheduleStack from './ScheduleStack';
+import AssignmentStack from './AssignmentStack';
+import ProfileStack from './ProfileStack';
+import { routes, TabParamList } from './routes';
+import { useAppData } from '../context/AppDataContext';
+import { useSync } from '../context/SyncContext';
+import colors from '../theme/colors';
+import spacing from '../theme/spacing';
+import typography from '../theme/typography';
+import layout from '../theme/layout';
 const Tab = createBottomTabNavigator<TabParamList>();
-const Stack = createNativeStackNavigator<RootStackParamList>();
-const icons = {
-  Overview: House,
-  Courses: BookOpen,
-  Timetable: CalendarBlank,
-  Assignments: CheckSquare,
-  Profile: UserCircle,
-};
-function MainTabs() {
+const tabIcons = Object.fromEntries(
+  Object.values(routes).map(name => [
+    name,
+    ({ focused, color }: { focused: boolean; color: string }) => (
+      <TabIcon
+        name={name as keyof TabParamList}
+        focused={focused}
+        color={color}
+      />
+    ),
+  ]),
+);
+export default function AppNavigator() {
   const insets = useSafeAreaInsets();
+  const { assignments } = useAppData();
+  const sync = useSync();
+  const count = assignments.filter(item => item.status === 'todo').length;
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarActiveTintColor: colors.ink,
-        tabBarInactiveTintColor: colors.muted,
-        tabBarStyle: [
-          styles.tabBar,
-          {
-            height: 70 + Math.max(insets.bottom, 9),
-            paddingBottom: Math.max(insets.bottom, 9),
-          },
-        ],
-        tabBarLabelStyle: styles.tabLabel,
-        tabBarItemStyle: styles.tabItem,
-        tabBarHideOnKeyboard: true,
-        tabBarIcon: ({ focused, color }) => {
-          const Icon = icons[route.name];
-          return (
-            <View style={[styles.tabIcon, focused && styles.tabIconActive]}>
-              <Icon
-                size={22}
-                weight={focused ? 'fill' : 'bold'}
-                color={color}
-              />
-            </View>
-          );
-        },
-      })}
-    >
-      <Tab.Screen
-        name="Overview"
-        component={OverviewScreen}
-        options={{ title: 'Tổng quan' }}
-      />
-      <Tab.Screen
-        name="Courses"
-        component={CoursesScreen}
-        options={{ title: 'Môn học' }}
-      />
-      <Tab.Screen
-        name="Timetable"
-        component={TimetableScreen}
-        options={{
-          title: 'Lịch học',
-          tabBarAccessibilityLabel: 'Thời khóa biểu',
-        }}
-      />
-      <Tab.Screen
-        name="Assignments"
-        component={AssignmentsScreen}
-        options={{ title: 'Bài tập' }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          title: 'Cá nhân',
-          tabBarAccessibilityLabel: 'Cá nhân và kết quả học tập',
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
-export function AppNavigator() {
-  const { loading, storageError, retry } = useStudy();
-  if (loading) {
-    return (
-      <SafeAreaView style={[ui.page, styles.loading]}>
-        <BookOpen size={34} color={colors.ink} weight="bold" />
-        <Text style={ui.heading}>study / space</Text>
-        <ActivityIndicator color={colors.green} />
-        <Text style={ui.muted}>Đang mở sổ tay của bạn...</Text>
-      </SafeAreaView>
-    );
-  }
-  return (
-    <View style={ui.page}>
-      {storageError && (
-        <SafeAreaView edges={['top']} style={{ backgroundColor: colors.redBg }}>
-          <Notice message={storageError} onRetry={retry} />
+    <View style={styles.page}>
+      {sync.message ? (
+        <SafeAreaView edges={['top']} style={styles.notice}>
+          <Text accessibilityRole="alert" style={styles.noticeText}>
+            {sync.message}
+          </Text>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Đóng thông báo đồng bộ"
+            onPress={sync.dismissMessage}
+            style={styles.dismiss}
+          >
+            <X size={spacing.icon} color={colors.text} />
+          </Pressable>
         </SafeAreaView>
-      )}
+      ) : null}
       <NavigationContainer
         theme={{
           ...DefaultTheme,
           colors: {
             ...DefaultTheme.colors,
-            background: colors.bg,
+            background: colors.background,
             card: colors.surface,
-            text: colors.ink,
-            primary: colors.ink,
+            text: colors.text,
+            primary: colors.text,
             border: colors.border,
           },
         }}
       >
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: { backgroundColor: colors.bg },
-            headerTintColor: colors.ink,
-            headerTitleStyle: { fontFamily: fonts.medium, fontSize: 14 },
-            headerShadowVisible: false,
-            headerBackButtonDisplayMode: 'minimal',
-            contentStyle: { backgroundColor: colors.bg },
-          }}
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarActiveTintColor: colors.text,
+            tabBarInactiveTintColor: colors.textMuted,
+            tabBarHideOnKeyboard: true,
+            tabBarStyle: [
+              styles.bar,
+              {
+                height:
+                  spacing.tabHeight +
+                  Math.max(insets.bottom, spacing.tabBottom),
+                paddingBottom: Math.max(insets.bottom, spacing.tabBottom),
+              },
+            ],
+            tabBarLabelStyle: styles.label,
+            tabBarItemStyle: styles.item,
+            tabBarBadgeStyle: styles.badge,
+            tabBarIcon: tabIcons[route.name],
+          })}
         >
-          <Stack.Screen
-            name="Main"
-            component={MainTabs}
-            options={{ headerShown: false }}
+          <Tab.Screen
+            name={routes.HomeTab}
+            component={HomeStack}
+            options={{ title: 'Tổng quan' }}
           />
-          <Stack.Screen
-            name="CourseDetail"
-            component={CourseDetailScreen}
-            options={{ title: 'Chi tiết môn học' }}
+          <Tab.Screen
+            name={routes.CourseTab}
+            component={CourseStack}
+            options={{ title: 'Môn học' }}
           />
-          <Stack.Screen
-            name="SessionDetail"
-            component={SessionDetailScreen}
-            options={{ title: 'Chi tiết buổi học' }}
+          <Tab.Screen
+            name={routes.ScheduleTab}
+            component={ScheduleStack}
+            options={{
+              title: 'Lịch học',
+              tabBarAccessibilityLabel: 'Thời khóa biểu',
+            }}
           />
-          <Stack.Screen
-            name="AssignmentDetail"
-            component={AssignmentDetailScreen}
-            options={{ title: 'Chi tiết bài tập' }}
+          <Tab.Screen
+            name={routes.AssignmentTab}
+            component={AssignmentStack}
+            options={{ title: 'Bài tập', tabBarBadge: count || undefined }}
           />
-          <Stack.Screen
-            name="ResultDetail"
-            component={ResultDetailScreen}
-            options={{ title: 'Kết quả học tập' }}
+          <Tab.Screen
+            name={routes.ProfileTab}
+            component={ProfileStack}
+            options={{
+              title: 'Cá nhân',
+              tabBarAccessibilityLabel: 'Cá nhân và kết quả học tập',
+            }}
           />
-          <Stack.Screen
-            name="EditProfile"
-            component={EditProfileScreen}
-            options={{ title: 'Chỉnh sửa hồ sơ', gestureEnabled: false }}
-          />
-        </Stack.Navigator>
+        </Tab.Navigator>
       </NavigationContainer>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  tabBar: {
+  page: layout.page,
+  bar: {
     backgroundColor: colors.surface,
-    borderTopWidth: 1,
+    borderTopWidth: spacing.hairline,
     borderTopColor: colors.border,
-    elevation: 0,
-    height: 78,
-    paddingTop: 8,
-    paddingBottom: 9,
+    elevation: spacing.borderNone,
+    paddingTop: spacing.xs,
   },
-  tabItem: { paddingVertical: 3 },
-  tabLabel: { fontFamily: fonts.medium, fontSize: 9, lineHeight: 16 },
-  tabIcon: {
-    width: 43,
-    height: 30,
-    borderRadius: 7,
+  label: typography.tab,
+  item: { paddingVertical: spacing.xxs, minHeight: spacing.touch },
+  badge: {
+    backgroundColor: colors.green,
+    color: colors.surface,
+    fontFamily: typography.small.fontFamily,
+  },
+  notice: {
+    ...layout.row,
+    paddingHorizontal: spacing.md,
+    backgroundColor: colors.blueSoft,
+  },
+  noticeText: { ...layout.muted, color: colors.blue, flex: spacing.grow },
+  dismiss: {
+    minHeight: spacing.touch,
+    minWidth: spacing.touch,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  tabIconActive: { backgroundColor: colors.greenBg },
-  loading: { alignItems: 'center', justifyContent: 'center', gap: 20 },
 });

@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { spawn } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
 
 const root = path.resolve(__dirname, '..');
 const cache = path.join(root, '.cache');
@@ -36,6 +36,28 @@ if (!fs.existsSync(cli)) {
 } else {
   console.log(`Gradle cache: ${gradle}`);
   console.log(`Temporary files: ${temporary}`);
+  if (process.argv[2] === 'run-android') {
+    const devices = spawnSync('adb', ['devices'], {
+      encoding: 'utf8',
+      windowsHide: true,
+    });
+    const serials = (devices.stdout ?? '')
+      .split(/\r?\n/)
+      .map(line => /^(\S+)\s+device$/.exec(line.trim())?.[1])
+      .filter(Boolean);
+    for (const serial of serials) {
+      const result = spawnSync(
+        'adb',
+        ['-s', serial, 'reverse', 'tcp:3000', 'tcp:3000'],
+        { encoding: 'utf8', windowsHide: true },
+      );
+      if (result.status !== 0) {
+        console.warn(
+          `API port forwarding failed for ${serial}. Run adb reverse tcp:3000 tcp:3000.`,
+        );
+      }
+    }
+  }
   const child = spawn(process.execPath, [cli, ...process.argv.slice(2)], {
     cwd: root,
     env,

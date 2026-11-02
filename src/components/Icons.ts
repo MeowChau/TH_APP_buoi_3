@@ -18,3 +18,4 @@ export { PencilSimpleIcon as PencilSimple } from 'phosphor-react-native/src/icon
 export { UserCircleIcon as UserCircle } from 'phosphor-react-native/src/icons/UserCircle';
 export { WarningCircleIcon as WarningCircle } from 'phosphor-react-native/src/icons/WarningCircle';
 export { XIcon as X } from 'phosphor-react-native/src/icons/X';
+export { SquareIcon as Square } from 'phosphor-react-native/src/icons/Square';

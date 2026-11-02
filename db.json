@@ -1,0 +1,283 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "studentCode": "2351120042",
+      "fullName": "Nguyễn Minh Anh",
+      "className": "CNTT K23A",
+      "major": "Công nghệ thông tin",
+      "email": "minhanh.nguyen@sv.edu.vn",
+      "phone": "0912345678",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "studentCode": "2351120043",
+      "fullName": "Trần Hoàng Nam",
+      "className": "CNTT K23A",
+      "major": "Công nghệ thông tin",
+      "email": "hoangnam.tran@sv.edu.vn",
+      "phone": "0912345679",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "studentCode": "2351120044",
+      "fullName": "Lê Thu Hà",
+      "className": "CNTT K23A",
+      "major": "Công nghệ thông tin",
+      "email": "thuha.le@sv.edu.vn",
+      "phone": "0912345680",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "studentCode": "2351120045",
+      "fullName": "Phạm Đức Minh",
+      "className": "CNTT K23A",
+      "major": "Công nghệ thông tin",
+      "email": "ducminh.pham@sv.edu.vn",
+      "phone": "0912345681",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "studentCode": "2351120046",
+      "fullName": "Võ Ngọc Linh",
+      "className": "CNTT K23A",
+      "major": "Công nghệ thông tin",
+      "email": "ngoclinh.vo@sv.edu.vn",
+      "phone": "0912345682",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "code": "IT3050",
+      "name": "Phát triển ứng dụng di động",
+      "credits": 3,
+      "lecturer": "ThS. Nguyễn Hoàng Nam",
+      "description": "Xây dựng ứng dụng di động đa nền tảng với React Native. Thực hành thiết kế giao diện, điều hướng, quản lý trạng thái và lưu trữ dữ liệu.",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": 2,
+      "code": "IT3080",
+      "name": "Cơ sở dữ liệu",
+      "credits": 3,
+      "lecturer": "TS. Trần Thị Thu Hà",
+      "description": "Mô hình dữ liệu quan hệ, thiết kế cơ sở dữ liệu, ngôn ngữ SQL và tối ưu truy vấn. Thực hành trên PostgreSQL.",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": 3,
+      "code": "IT3010",
+      "name": "Cấu trúc dữ liệu và giải thuật",
+      "credits": 4,
+      "lecturer": "TS. Lê Minh Quân",
+      "description": "Phân tích độ phức tạp, cấu trúc dữ liệu tuyến tính, cây, đồ thị và các chiến lược thiết kế giải thuật.",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": 4,
+      "code": "IT3070",
+      "name": "Thiết kế giao diện người dùng",
+      "credits": 3,
+      "lecturer": "ThS. Phạm Ngọc Linh",
+      "description": "Nghiên cứu người dùng, kiến trúc thông tin, tạo mẫu tương tác và kiểm thử tính khả dụng của giao diện số.",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": 5,
+      "code": "FL2010",
+      "name": "Tiếng Anh chuyên ngành",
+      "credits": 2,
+      "lecturer": "ThS. Võ Thanh Hương",
+      "description": "Đọc hiểu tài liệu công nghệ thông tin, viết báo cáo kỹ thuật và thuyết trình bằng tiếng Anh.",
+      "semester": "HK1 2026-2027"
+    }
+  ],
+  "sessions": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "dayOfWeek": 2,
+      "startTime": "07:30",
+      "endTime": "10:00",
+      "room": "B1.302",
+      "note": "Bottom Tab Navigation và Stack Navigation · Thực hành"
+    },
+    {
+      "id": 2,
+      "courseId": 2,
+      "dayOfWeek": 2,
+      "startTime": "13:00",
+      "endTime": "15:30",
+      "room": "A2.205",
+      "note": "Chuẩn hóa cơ sở dữ liệu · Lý thuyết"
+    },
+    {
+      "id": 3,
+      "courseId": 3,
+      "dayOfWeek": 3,
+      "startTime": "07:30",
+      "endTime": "10:50",
+      "room": "A1.401",
+      "note": "Cây nhị phân tìm kiếm và cây AVL · Lý thuyết"
+    },
+    {
+      "id": 4,
+      "courseId": 4,
+      "dayOfWeek": 4,
+      "startTime": "09:10",
+      "endTime": "11:40",
+      "room": "B2.201",
+      "note": "Thiết kế prototype và kiểm thử người dùng · Thực hành"
+    },
+    {
+      "id": 5,
+      "courseId": 5,
+      "dayOfWeek": 5,
+      "startTime": "13:00",
+      "endTime": "14:40",
+      "room": "C1.103",
+      "note": "Presenting a software project · Thảo luận"
+    },
+    {
+      "id": 6,
+      "courseId": 1,
+      "dayOfWeek": 6,
+      "startTime": "07:30",
+      "endTime": "10:00",
+      "room": "B1.302",
+      "note": "Lưu trữ dữ liệu với AsyncStorage · Thực hành"
+    },
+    {
+      "id": 7,
+      "courseId": 2,
+      "dayOfWeek": 6,
+      "startTime": "13:00",
+      "endTime": "15:30",
+      "room": "B1.203",
+      "note": "Thực hành JOIN, GROUP BY và truy vấn con · Thực hành"
+    }
+  ],
+  "assignments": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "title": "Ứng dụng quản lý học tập",
+      "description": "Xây dựng ứng dụng React Native hỗ trợ sinh viên quản lý môn học, thời khóa biểu, bài tập và kết quả học tập.\nCó 5 tab chính và các màn hình chi tiết bằng Native Stack.\nDùng FlatList, useState và useEffect.\nLưu thông tin cá nhân và trạng thái bài tập bằng AsyncStorage.\nNộp mã nguồn, báo cáo và video demo.\nNộp: Link kho mã nguồn và báo cáo PDF",
+      "dueDate": "2026-11-03T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "courseId": 2,
+      "title": "Thiết kế cơ sở dữ liệu thư viện",
+      "description": "Phân tích và thiết kế cơ sở dữ liệu cho hệ thống quản lý thư viện trường đại học.\nVẽ sơ đồ ERD với sách, độc giả, phiếu mượn.\nChuẩn hóa các bảng đến dạng chuẩn 3NF.\nViết script tạo bảng và 10 truy vấn SQL.\nNộp: Tệp .sql và báo cáo PDF",
+      "dueDate": "2026-11-04T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "courseId": 3,
+      "title": "Cài đặt cây nhị phân tìm kiếm",
+      "description": "Cài đặt cấu trúc cây nhị phân tìm kiếm và so sánh hiệu năng với mảng có thứ tự.\nCài đặt thêm, xóa, tìm kiếm và duyệt cây.\nPhân tích độ phức tạp của từng thao tác.\nKiểm thử cây rỗng, cây một phần tử và dữ liệu trùng.\nNộp: Mã nguồn C++ hoặc Java và báo cáo",
+      "dueDate": "2026-11-06T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "courseId": 4,
+      "title": "Prototype ứng dụng sinh viên",
+      "description": "Thiết kế prototype tương tác cho ứng dụng hỗ trợ sinh viên trong hoạt động học tập.\nPhác thảo luồng người dùng.\nThiết kế ít nhất 5 màn hình trên Figma.\nKiểm thử với 3 người dùng và tổng hợp nhận xét.\nNộp: Link Figma và báo cáo PDF",
+      "dueDate": "2026-11-08T16:59:00.000Z",
+      "status": "done",
+      "updatedAt": "2026-11-02T07:49:16.684Z"
+    },
+    {
+      "id": 5,
+      "courseId": 5,
+      "title": "Thuyết trình về một sản phẩm số",
+      "description": "Chuẩn bị bài thuyết trình tiếng Anh giới thiệu một sản phẩm công nghệ và trải nghiệm người dùng.\nThuyết trình từ 5 đến 7 phút.\nChuẩn bị 8–10 slide.\nSử dụng ít nhất 10 thuật ngữ chuyên ngành.\nNộp: Slide PDF và video MP4",
+      "dueDate": "2026-11-10T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "courseId": 1,
+      "title": "Bài thực hành: giao diện đăng nhập",
+      "description": "Xây dựng giao diện đăng nhập và kiểm tra dữ liệu nhập trên React Native.\nCó trường email và mật khẩu.\nHiển thị lỗi nhập liệu.\nGiao diện thích ứng với bàn phím.\nNộp: Link kho mã nguồn",
+      "dueDate": "2026-10-31T16:59:00.000Z",
+      "status": "done",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "courseId": 3,
+      "title": "Phân tích độ phức tạp giải thuật",
+      "description": "Đánh giá độ phức tạp thời gian và bộ nhớ của các giải thuật sắp xếp đã học.\nSo sánh Bubble Sort, Merge Sort và Quick Sort.\nĐo thời gian trên 3 kích thước dữ liệu.\nGiải thích sự khác nhau giữa trường hợp tốt và xấu nhất.\nNộp: Báo cáo PDF",
+      "dueDate": "2026-11-01T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-26T08:00:00.000Z"
+    }
+  ],
+  "grades": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "semester": "HK1 2026-2027",
+      "attendance": 10,
+      "midterm": 8.5,
+      "final": 9,
+      "total": 8.95,
+      "letter": "A"
+    },
+    {
+      "id": 2,
+      "courseId": 2,
+      "semester": "HK1 2026-2027",
+      "attendance": 9,
+      "midterm": 8,
+      "final": 8.5,
+      "total": 8.4,
+      "letter": "B+"
+    },
+    {
+      "id": 3,
+      "courseId": 3,
+      "semester": "HK1 2026-2027",
+      "attendance": 10,
+      "midterm": 8,
+      "final": 8,
+      "total": 8.2,
+      "letter": "B+"
+    },
+    {
+      "id": 4,
+      "courseId": 4,
+      "semester": "HK1 2026-2027",
+      "attendance": 10,
+      "midterm": 9,
+      "final": 9,
+      "total": 9.1,
+      "letter": "A"
+    },
+    {
+      "id": 5,
+      "courseId": 5,
+      "semester": "HK1 2026-2027",
+      "attendance": 9,
+      "midterm": 7,
+      "final": 8,
+      "total": 7.8,
+      "letter": "B"
+    }
+  ]
+}

@@ -1,67 +1,69 @@
-export type Profile = {
-  studentId: string;
-  name: string;
-  email: string;
-  phone: string;
+export type Id = number | string;
+export type Student = {
+  id: Id;
+  studentCode: string;
+  fullName: string;
   className: string;
   major: string;
-  school: string;
+  email: string;
+  phone: string;
+  updatedAt: string;
 };
 export type Course = {
-  id: string;
+  id: Id;
+  code: string;
   name: string;
   credits: number;
   lecturer: string;
-  color: 'green' | 'blue' | 'yellow' | 'red';
   description: string;
-  assessment: string;
-  progress: number;
+  semester: string;
 };
 export type Session = {
-  id: string;
-  courseId: string;
-  day: number;
-  start: string;
-  end: string;
+  id: Id;
+  courseId: Id;
+  dayOfWeek: number;
+  startTime: string;
+  endTime: string;
   room: string;
-  topic: string;
-  type: string;
+  note: string;
+  course?: Course;
 };
 export type Assignment = {
-  id: string;
-  courseId: string;
+  id: Id;
+  courseId: Id;
   title: string;
-  due: string;
-  completed: boolean;
   description: string;
-  requirements: string[];
-  format: string;
+  dueDate: string;
+  status: 'todo' | 'done';
+  updatedAt: string;
+  course?: Course;
 };
-export type GradePart = { name: string; weight: number; score: number };
-export type Result = {
-  id: string;
-  courseId: string;
+export type Grade = {
+  id: Id;
+  courseId: Id;
   semester: string;
-  parts: GradePart[];
-  feedback: string;
+  attendance: number;
+  midterm: number;
+  final: number;
+  total: number;
+  letter: string;
+  course?: Course;
 };
-export type StudyState = {
-  version: 1;
-  profile: Profile;
-  assignments: Assignment[];
+export type ApiError = {
+  type: 'network' | 'timeout' | 'http';
+  status: number;
+  message: string;
 };
-export type TabParamList = {
-  Overview: undefined;
-  Courses: undefined;
-  Timetable: undefined;
-  Assignments: undefined;
-  Profile: undefined;
+export type OutboxAction = {
+  id: string;
+  method: 'POST' | 'PATCH';
+  url: string;
+  body: Record<string, unknown>;
+  createdAt: string;
 };
-export type RootStackParamList = {
-  Main: undefined;
-  CourseDetail: { id: string };
-  SessionDetail: { id: string };
-  AssignmentDetail: { id: string };
-  ResultDetail: { id: string };
-  EditProfile: undefined;
-};
+export type CacheEntry<T> = { data: T; savedAt: string };
+export type ProfileInput = Pick<Student, 'fullName' | 'email' | 'phone'>;
+export type AssignmentInput = Pick<
+  Assignment,
+  'courseId' | 'title' | 'description' | 'dueDate'
+>;
